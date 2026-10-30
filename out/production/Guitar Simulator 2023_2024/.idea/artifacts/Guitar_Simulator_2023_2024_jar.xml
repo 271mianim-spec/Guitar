@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Guitar Simulator 2023_2024:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Guitar_Simulator_2023_2024_jar</output-path>
+    <root id="archive" name="Guitar Simulator 2023_2024.jar">
+      <element id="module-output" name="Guitar Simulator 2023_2024" />
+    </root>
+  </artifact>
+</component>
