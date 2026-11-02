@@ -6,8 +6,12 @@
  */
 public class GuitarString 
 {
+    private int ticks;
+    private double frequency;
+
     public GuitarString(double frequency) 
     {
+        this.frequency = frequency;
     }
 
     public GuitarString(double[] array) 
@@ -16,11 +20,13 @@ public class GuitarString
 
     public void pluck() 
     {
+        System.out.println("pluck!");
     }
 
     // advance the simulation one time step
     public void tic() 
     {
+        ticks++;
     }
 
     // return the current sample
@@ -32,7 +38,7 @@ public class GuitarString
     // return number of times tic was called
     public int time() 
     {
-        return 0;
+        return ticks;
     }
 
     public static void main(String[] args) 
