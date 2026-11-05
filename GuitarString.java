@@ -6,12 +6,14 @@
  */
 public class GuitarString 
 {
+    private RingBuffer buffer;
+
     private int ticks;
     private double frequency;
 
     public GuitarString(double frequency) 
     {
-        this.frequency = frequency;
+        this.buffer = new RingBuffer((int) (Math.ceil(44100/frequency)));
     }
 
     public GuitarString(double[] array) 
