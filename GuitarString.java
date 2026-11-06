@@ -8,33 +8,60 @@ public class GuitarString
 {
     private RingBuffer buffer;
 
+    private final double energyDecay = 0.994;
+
     private int ticks;
-    private double frequency;
+    private int length;
 
     public GuitarString(double frequency) 
     {
-        this.buffer = new RingBuffer((int) (Math.ceil(44100/frequency)));
+        length = (int) (Math.ceil(44100/frequency));
+        this.buffer = new RingBuffer(length);
+        for (int i = 0; i < length; i++) {
+            buffer.add(0);
+        }
     }
 
     public GuitarString(double[] array) 
     {
+        int frequency = array.length;
+
+        length = (int) (Math.ceil(44100/frequency));
+        this.buffer = new RingBuffer(length);
+        for (int i = 0; i < length; i++) {
+            buffer.add(0);
+        }
     }
 
     public void pluck() 
     {
-        System.out.println("pluck!");
+        for (int i = 0; i < length; i++) {
+            buffer.remove();
+
+            int randomNum = (int) ((Math.random()*10)-5);
+
+            buffer.add(randomNum);
+        }
     }
 
     // advance the simulation one time step
     public void tic() 
     {
+        double firstValue = buffer.remove();
+        double secondValue = buffer.peek();
+
+        double average = (firstValue + secondValue)/2;
+        double finalAverage = average * energyDecay;
+
+        buffer.add(finalAverage);
+
         ticks++;
     }
 
     // return the current sample
     public double sample() 
     {
-        return 0.0;
+        return buffer.peek();
     }
 
     // return number of times tic was called
